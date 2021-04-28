@@ -4,10 +4,9 @@
 ## Notes
 - install - <https://www.python.org>
 - use <https://replit.com> or [visual studio code](https://code.visualstudio.com/) and install python extension
-- learn python - <https://www.learnpython.org/>, <https://www.w3schools.com/python/python_intro.asp>, [Python YT playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM)
+- learn python - <https://www.learnpython.org/>, <https://www.w3schools.com/python/python_intro.asp>, [Python YT playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM), [python overview](https://www.w3schools.com/python/python_reference.asp)
 - how to run python progs - `python`
 
-# Basics
 
 ## Comments
 
@@ -299,9 +298,252 @@ for x in [0, 1, 2]:
 ## Functions
 - function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function. A function can return data as a result.
 
-- function is defined using the def keyword:
+- function is defined using the **def** keyword:
 ```python 
 def my_function():
   print("Hello from a function")
 ```
 - call a function - my_function()
+- **parameters** - is the variable listed inside the parentheses in the function definition
+- **arguments** (args) - info can be passed into functions, value that is sent to the function when it is called
+
+if your function expects 2 arguments, you have to call the function with 2 arguments
+```python 
+def my_function(fname, lname):
+  print(fname + " " + lname)
+
+my_function("Marj", "Gee")
+```
+
+Arbitrary Arguments, *args
+If the number of arguments is unknown, add a * before the parameter name:
+```python
+def my_function(*kids):
+  print("The youngest child is " + kids[2])
+
+my_function("Emil", "Tobias", "Linus")
+```
+
+Return Values - to let a function return a value, use the return statement:
+
+```python
+def my_function(x):
+  return 5 * x
+
+print(my_function(3))
+print(my_function(5))
+print(my_function(9))
+```
+
+pass statement - func def cant be empty - 
+
+```def myfunction():
+  pass
+```
+
+## Lambda Functions 
+A lambda function is a small anonymous function. A lambda function can take any number of arguments, but can only have one expression. Use lambda functions when an anonymous function is required for a short period of time. 
+
+Syntax `lambda arguments : expression`
+
+Add 10 to argument a, and return the result:
+```python
+x = lambda a : a + 10
+print(x(5))
+```
+
+## Classes and objects
+Python is an OOP. most things in Python are objects, with its props and methods. Class = blueprint for creating objects.
+
+Create a class named MyClass, with a property named x, create an object named p1, print value of x:
+```python 
+class MyClass: 
+  x = 5 
+
+p1 = MyClass() 
+
+print(p1.x) # prints 5
+```
+
+All classes have a function called `__init__()`, which is always executed when the class is being initiated. 
+
+Use the `__init__()` function to assign values to object properties, or other operations that are necessary to do when the object is being created:
+
+```python 
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+p1 = Person("John", 36)
+
+print(p1.name) # prints John
+print(p1.age) # prints 36
+```
+The `__init__()` function is called automatically every time the class is being used to create a new object.
+
+
+**Object Methods** - objects can also contain methods. Methods in objects are functions that belong to the object. 
+The self parameter is a reference to the current instance of the class, and is used to access variables that belong to the class. (Doesn't have to be called 'self')
+
+```python
+class Person:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+  def myfunc(self):
+    print("Hello my name is " + self.name)
+
+p1 = Person("John", 36)
+p1.myfunc() 
+
+# prints Hello my name is John
+```
+
+- del - `del p1.age` = dels age prop from the p1 obj, del p1 = dels p1 obj 
+
+## Iterators
+- an object that contains a countable number of values. [w3schools](https://www.w3schools.com/python/python_iterators.asp)
+
+## Modules 
+Consider a module to be the same as a code library. A file containing a set of functions you want to include in your application.
+
+To create a module just save the code you want in a file with the file extension .py. Save this code in a file named mymodule.py:
+
+```python
+def greeting(name):
+  print("Hello, " + name)
+```  
+
+When using a function from a module, use the syntax: `module_name.function_name`:
+
+```python
+import mymodule
+mymodule.greeting("Marj")
+```
+
+- `import mymodule as mx` - can rename module
+- dir(module) - built-in function to list all the function names (or variable names) in a module
+- `from mymodule import person1, print (person1["age"])` - can choose to import only parts from a module, by using the from keyword (imports only the person1 dictionary from the module)
+
+## Math Functions 
+min() and max() functions can be used to find the lowest or highest value in an iterable
+
+```python 
+x = min(5, 10, 25)
+y = max(5, 10, 25)
+
+print(x) # prints 5
+print(y) # prints 25
+```
+built-in module called math, which extends the list of mathematical functions. To use - `import math` can use the `math.sqrt()` method 
+- math.pi (prints 3.141592653589793), math.ceil(), math.floor()
+
+```python
+import math
+
+x = math.ceil(1.4)
+y = math.floor(1.4)
+
+print(x) # returns 2
+print(y) # returns 1
+```
+
+## JSON in Python 
+
+- `import json`
+- If you have a JSON string, you can parse it by using the json.loads() method.
+- If you have a Python object, you can convert it into a JSON string by using the json.dumps() method.
+
+```python 
+import json
+
+# a Python object (dict):
+x = {
+  "name": "John",
+  "age": 30,
+  "city": "New York"
+}
+
+# convert into JSON:
+y = json.dumps(x)
+
+# the result is a JSON string:
+print(y)
+
+# prints  {"name": "John", "age": 30, "city": "New York"}
+```
+
+When you convert from Python to JSON, Python objects are converted into the JSON (JavaScript) equivalent:
+
+Python | JSON
+--- | ---
+dict | Object
+list | Array
+tuple | Array
+str | String
+int | Number
+float | Number
+True | true
+False | false
+None | null
+
+## Regular Expression, RegEx
+- a sequence of characters that forms a search pattern. RegEx can be used to check if a string contains the specified search pattern. [w3schools](https://www.w3schools.com/python/python_regex.asp)
+- built-in package called re, which can be used to work with Regular Expressions. `import re`
+
+Function | Description
+--- | ---
+findall() | Returns a list containing all matches
+search() | Returns a Match object if there is a match anywhere in the string
+split() | Returns a list where the string has been split at each match
+sub() | Replaces one or many matches with a string
+
+## PIP
+Package manager for Python packages, or modules if you like. For Python version 3.4 or later, PIP is included by default.
+
+What's a package? A package contains all the files you need for a module. Modules are Python code libraries you can include in your project.
+
+- Install pip. to download a pkg - pip install camelcase
+- Find pkgs - <https://pypi.org>
+- Remove pkgs - pip uninstall camelcase
+- List pkgs - pip list
+
+## Try, Except, Finally
+The **try** block lets you test a block of code for errors. The try block will generate an exception, because x is not defined:
+```python
+try:
+  print(x)
+except:
+  print("An exception occurred")
+```
+
+The **except** block lets you handle the error.
+In this example, the try block does not generate any error:
+```python
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")
+```  
+
+The **finally** block lets you execute code, regardless of the result of the try- and except blocks.
+```python
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
+```
+
+## User Input
+
+Python 3.6 uses the input() method. Can ask user for input.
+```python 
+username = input("Enter username:")
+print("Username is: " + username) 
+```
