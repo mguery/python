@@ -4,7 +4,7 @@
 ## Notes
 - install - <https://www.python.org>
 - use <https://replit.com> or [visual studio code](https://code.visualstudio.com/) and install python extension
-- learn python - <https://www.learnpython.org/>, <https://www.w3schools.com/python/python_intro.asp>, [Python YT playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM), [python overview](https://www.w3schools.com/python/python_reference.asp)
+- learn python - <https://www.learnpython.org/>, <https://www.w3schools.com/python/python_intro.asp>, [Python YT playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM), [python overview](https://www.w3schools.com/python/python_reference.asp), [FCC - Python Playbook](https://www.freecodecamp.org/news/the-python-handbook/#introductiontopython)
 - how to run python progs - `python`
 
 
@@ -82,7 +82,7 @@ bitwise - & = AND, | = OR, ~ = NOT
 
 ## List methods
 `myList = ["red", "orange", "yellow", "green", "blue"]` or `myList = list(("red", "orange", "yellow", "green", "blue"))`
-- collection which is ordered and changeable, allows duplicate values
+- collection which is ordered and changeable/mutable, allows duplicate values
 - access list - print(myList[:4]) - prints all but blue (1st item has index 0), print(myList[2:]) - prints ygb
 - .append() - myList.append("indigo") - adds this to the end of list
 - .insert() - myList.insert(2, "indigo") - adds this after orange
@@ -94,18 +94,27 @@ bitwise - & = AND, | = OR, ~ = NOT
 - .sort() - sorts alphabetically or numerically, myList.sort(reverse = True) - descending
 - make a copy - .copy() or list(myList)
 
+## Slice Operators
+can use on lists, sets, tuples
+
+sliced = [start:stop] or sliced = [start:stop:step]
+
+- [-1] - prints second to last item
+- [1:4] - start at 1 and stop at 4
+- [:4] - stop at index 4 but don't include
+- [2:] - start at 2 and stop at end
+- [::2] - start at beg, stop at end, step by 2
+- [::-1] - reverse a list
+
+
 ## Tuples
 `myTuple = ("red", "orange", "yellow", "green", "blue")` or `myTuple = tuple(("red", "orange", "yellow", "green", "blue"))`
 - stores multiple items in a single variable, collection which is ordered and unchangeable or immutable, and allow duplicate values
 - convert the tuple into a list to be able to change or add values - `y = list(myTuple)` then `y.append("gray")`, `myTuple = tuple(y)`
 - defined as objs with data type 'tuple' `print(type(myTuple))` prints `<class 'tuple'>`
-print(len(myTuple)) - # of items in tuple
+- print(len(myTuple)) - # of items in tuple
 - create a tuple with only one item - myTuple = ("red",)
 - print(myTuple[1]) - prints 2nd item - orange
-- [-1] - prints second to last item
-- [1:4] - prints oyg
-- [:4] - prints all but index 4
-- [2:] - prints ygb
 - packing - assign values to a tuple. unpacking = extract values
 ```
 fruits = ("apple", "banana", "cherry")
@@ -119,7 +128,7 @@ print(red)
 
 ## Set
 `mySet = {"red", "orange", "yellow", "green", "blue"}` or`mySet = set(("red", "orange", "yellow", "green", "blue"))`
--  store multiple items in a single variable, collection which is unordered (no index, changes order every time) and unchangeable, no duplicate values (dupes are ignored)
+-  store multiple items in a single variable, collection which is unordered (no index, changes order every time) and unchangeable, no duplicate values (dupes are removed)
 - built-in methods - add(), discard(), copy, clear, difference, union, update, remove, pop
 
 ## Dictionary
@@ -140,8 +149,24 @@ myFamily = {
 ```
 - methods to use - copy(), fromkeys(), get(), keys(), update(), values()
 
+## Comprehension
+List comprehension - when you want to create a new list based on the values of an existing list. For dict, lists, sets. For tuples `x = tuple(condition)`
+
+Syntax
+`newlist = [expression for item in iterable if condition == True]`
+
+```python
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+
+newlist = [x for x in fruits if "a" in x]
+
+print(newlist) # prints ['apple', 'banana', 'mango']
+```
+
 ## If statements
 examples from [W3schools](https://www.w3schools.com/python/python_conditions.asp)
+indentation is muy importante! 
+
 ```python
 a = 33
 b = 200
@@ -206,7 +231,7 @@ if a > b or a > c:
 ```
 
 ## While loops
-- can execute a set of statements as long as a condition is true
+- can execute a set of statements as long as a condition is true (`while condition == True:`)
 
 Print i as long as i is less than 6:
 ```python 
@@ -258,6 +283,11 @@ Prints each letter in a list
 for x in "banana":
   print(x)
 ```
+range function - 3 args start, stop, step / 2 args start, stop
+```
+for i in range(10, -1, -1): 
+  print(i)
+```
 
 break statement we can stop the loop before it has looped through all the items
 
@@ -300,14 +330,16 @@ for x in [0, 1, 2]:
 
 - function is defined using the **def** keyword:
 ```python 
-def my_function():
-  print("Hello from a function")
+def func():
+  print("Run")
+  
+func() # call a function
 ```
-- call a function - my_function()
 - **parameters** - is the variable listed inside the parentheses in the function definition
-- **arguments** (args) - info can be passed into functions, value that is sent to the function when it is called
+- **arguments** (args) - info can be passed into functions, value that is sent to the function when it is called. (below: fname and lname are args)
 
 if your function expects 2 arguments, you have to call the function with 2 arguments
+
 ```python 
 def my_function(fname, lname):
   print(fname + " " + lname)
@@ -324,7 +356,21 @@ def my_function(*kids):
 my_function("Emil", "Tobias", "Linus")
 ```
 
-Return Values - to let a function return a value, use the return statement:
+unpack operator *
+```python
+def func(x, y):
+  print(x, y)
+
+pairs = [(1,2), (3,4)]
+
+for pair in pairs:
+  func(*pair) # prints 1 2 \n 3 4
+```
+for dict - `func(**{'x': 2, 'y': 5})`
+
+**kwargs - keyword args 
+
+**Return** Values - to let a function return a value, use the return statement:
 
 ```python
 def my_function(x):
@@ -335,7 +381,7 @@ print(my_function(5))
 print(my_function(9))
 ```
 
-pass statement - func def cant be empty - 
+**pass** statement - func def cant be empty - 
 
 ```def myfunction():
   pass
@@ -351,6 +397,18 @@ Add 10 to argument a, and return the result:
 x = lambda a : a + 10
 print(x(5))
 ```
+
+map and filter
+```python
+x = [1,5,7,10,23,50]
+
+mp = map(lambda i: i + 2, x)
+
+print(list(mp)) # adds 2 to the values and prints new list in brackets
+
+```
+filter `mp = filter(lambda i: i % 2 == 0, x)` - only return values that are even
+
 
 ## Classes and objects
 Python is an OOP. most things in Python are objects, with its props and methods. Class = blueprint for creating objects.
@@ -542,8 +600,28 @@ finally:
 
 ## User Input
 
-Python 3.6 uses the input() method. Can ask user for input.
+Python 3.6 uses the input() method. Can ask user for input. 
 ```python 
 username = input("Enter username:")
 print("Username is: " + username) 
 ```
+
+```python
+name = input("What's your name?: ")
+age = input("How old are you?: ")
+
+print("Hello " + name + "! You are " + age + " years old.")
+```
+
+# F Strings 
+
+```
+name = "Marj G"
+print(f"Your name is {name}.") # 'Your name is Marj G'
+```
+
+```python
+user = {name: "Marj G", email: "youremail@gmail.com"}
+print(f{"Hello, {user['name']}. Your email address is: {user['email']}.")
+```
+
