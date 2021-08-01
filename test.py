@@ -3,7 +3,7 @@ import ldclient
 from ldclient.config import Config
 
 # Set sdk_key to your LaunchDarkly SDK key before running
-sdk_key = "sdk-4240d5a0-5673-4a38-a219-fb133c40f820"
+sdk_key = "sdk-here-####"
 
 # Set feature_flag_key to the feature flag key you want to evaluate
 feature_flag_key = "my-boolean-flag"
@@ -30,7 +30,7 @@ if __name__ == "__main__":
   user = {
     "key": "example-user-key",
     "name": "Sandy",
-    "email": "marjyguery@gmail.com"
+    "email": "email@google.com"
   }
 
   flag_value = ldclient.get().variation(feature_flag_key, user, False)
