@@ -6,7 +6,7 @@
 - use <https://replit.com> or [visual studio code](https://code.visualstudio.com/) and install python extension
 - learn python - <https://www.learnpython.org/>, <https://www.w3schools.com/python/python_intro.asp>, [Python YT playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM), [python overview](https://www.w3schools.com/python/python_reference.asp), [FCC - Python Playbook](https://www.freecodecamp.org/news/the-python-handbook/#introductiontopython)
 - how to run python progs - `python`
-
+- Projects - [Bite-Size Python](https://amzn.to/3wlxPjY) (afflitate), [Big Book of Python projects](https://amzn.to/302qucI) (afflitate), YouTube - [Python playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM)
 
 ## Comments
 
