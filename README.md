@@ -35,6 +35,20 @@ Casting - specify a type on to a variable
 - int(3) = 3
 - float(3) = 3.0
 
+Conversion
+"enables you to change the int variable from int to str so that you can combine the two variables together. Calling str() on either a float or an int will change the value to a str.
+However, keep in mind that this change applies only to the output and does not
+change the type of the original variable."
+
+```python
+city = 'NYC'
+state = 'NY'
+zip_code = 10003
+
+location = city + ', ' + state + ' ' + str(zip_code)
+print(location)
+```
+
 ## Data types
 - integer -  23 or -22
 - float - 26.3 or -75.5
@@ -49,6 +63,8 @@ Casting - specify a type on to a variable
 - print(4.5)
 - print("Hey world")
 - x = "hi", print(x + " world")
+- print(variable.find('string')) - `print(month.find('u'))` prints index of charac
+- print(variable[index]) - `print(car[2])` prints specific index / `print(car[−2])` prints 2nd to last charac
 
 ## Input
 -  `input('Name: ')`
@@ -78,7 +94,10 @@ bitwise - & = AND, | = OR, ~ = NOT
 - format() - formats values in string
 - index() - searches the string for a value, returns where the value is found
 - swapcase() - lower becomes upper, vice versa
-- title() - first char of each word is uppercase
+- title() - first char of each word is uppercase `print(book.title())`
+- strip() - strips away certain characs `print(mood.strip('!'))`
+- replace() - replace with 2nd argument `print(opinion.replace('hard', 'fun'))`
+- len() - # of characs in a string `print(len(state))`
 
 ## List methods
 `myList = ["red", "orange", "yellow", "green", "blue"]` or `myList = list(("red", "orange", "yellow", "green", "blue"))`
