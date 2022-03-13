@@ -5,13 +5,79 @@ Automate tasks by writing Python scripts, Use Git and GitHub for version control
 
 # Crash Course on Python [Link](https://www.coursera.org/learn/python-crash-course/home/info)
 
-## Module 1: Hello Python! 
+## Module 1/Week 1: Hello Python! 
 - https://www.python.org/shell
 - https://trinket.io/python3
 - https://replit.com/languages/python3
 
 
 ## Module 2: Basic Python Syntax 
+- past notes on python https://github.com/mguery/python
+- expressions and vars 
+```
+base = 6
+height = 3
+area = (base*height)/2
+print("area of triangle is: " + str(area))
+```
+
+- functions
+```python
+def greeting(name, department):
+  print("Welcome, " + name)
+  print("you're in " + department)
+
+greeting("MG", "IT")
+Welcome, MG
+you're in IT
+```
+
+```python
+def print_seconds(hours, minutes, seconds):
+    print(3600*hours + 60*minutes + seconds)
+
+print_seconds(1,2,3)
+```
+
+```python
+def area_triangle(base, height):
+  return base*height/2
+
+area_a = area_triangle(5,4)
+area_b = area_triangle(7,3)
+sum = area_a + area_b
+
+print("sum of both areas is: " + str(sum)) 
+
+```
+
+
+
+- branching with if statements
+```python
+def hint_username(username):
+  if len(username) < 3:
+    print("Invalid username.")
+  else: 
+    print("Valid username.")
+```
+
+```python
+def is_even(number):
+  if number % 2 == 0:
+    return True
+  return False
+```
+
+```python
+def hint_username(username):
+  if len(username) < 3:
+    print("Invalid username.")
+  elif len(username) > 15:
+      print("Invalid. To many characs")
+  else:
+    print("Valid username.")
+```
 
 
 ## Module 3: Loops  
