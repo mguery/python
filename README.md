@@ -8,6 +8,10 @@
 - how to run python progs - `python`
 - Projects - [Bite-Size Python](https://amzn.to/3wlxPjY) (afflitate), [Big Book of Python projects](https://amzn.to/302qucI) (afflitate), YouTube - [Python playlist](https://youtube.com/playlist?list=PLHl7C8vb5dHanHPOz2TxdZ71NuJU2cyjM)
 
+- mutable = flexible / lists, dicts, sets
+- immutable  delete and recreate / ints, floats, str, bools, tuples, frozenset
+- type() - returns data type `type(1) = int`
+
 ## Comments
 
 - `# comment here`
@@ -22,6 +26,7 @@ comment
 
 ## Vars 
 - `name = 'Marj'`, vars stores data, no special characs or start with a #, snake case = 'var_name' or camel case = varName, vars are case sensitive
+- track vars - %who (list vars) or %whos (lists vars, type, data/info)
 - concatenate: 
 ```python
 x = 'hi'
@@ -50,10 +55,11 @@ print(location)
 ```
 
 ## Data types
-- integer -  23 or -22
+- integer (int) -  23 or -22
 - float - 26.3 or -75.5
-- string - "Marj" or 'Marj'
-- boolean - true, false
+- complex - 3 + 2j
+- string (str) - "Marj" or 'Marj'
+- boolean (bool) - true, false
 - list - `x = ["red", "purple", "blue"]`
 - tuple - `x = ("red", "purple", "blue")`
 - dict - `x = {"name" : "Marj", "age" : 21}`
@@ -79,25 +85,57 @@ print(name)
 assignment ops - `x += 3` same as `x = x + 3` and `x *= 3` same as `x = x * 3`, also - -=, /=, %=, \**=
 arithmetic operators - +, -, \*, /, %, \** (exponents: `x ** y`), // = floor division   
 comparisons - ==, !=, <, >, >=, <= -
-logical - not, and, or
-bitwise - & = AND, | = OR, ~ = NOT
+logical - not, and, or / if 1st expression chained by 'and' is false or 'or is True, rest of cluase not evaluated, put simples clauses 1st
+bitwise - & = AND, | = OR, ~ = NOT 
+- use () to control order of evaluation
+- Membership tests - in, not in - 'rain' in message = True
+
 
 ## Escape characs
 - \ = escape, \n = new line, \r = return, \t = tab, \b = backspace
+
+## User Input
+
+Python 3.6 uses the input() method. Can ask user for input. 
+```python 
+username = input("Enter username:")
+print("Username is: " + username) 
+```
+
+```python
+name = input("What's your name?: ")
+age = input("How old are you?: ")
+
+print("Hello " + name + "! You are " + age + " years old.")
+```
+
+# F Strings 
+
+```
+name = "Marj G"
+print(f"Your name is {name}.") # 'Your name is Marj G'
+```
+
+```python
+user = {name: "Marj G", email: "youremail@gmail.com"}
+print(f{"Hello, {user['name']}. Your email address is: {user['email']}.")
+```
 
 ## String methods
 - `print(hello.upper())` - uppercase entire string 
 - `print(hello.lower())` - lowercase
 - `print(hello.capatalize())` - capatalize first letter
 - `print(hello.count('a'))` - # of times a value is in a string
-- `print('hello world'.count('o'))` - chaining
+- `print('hello world'.count('o'))` - chaining / `message[6::].lower().split()` - removes 6 characs, lowercase for remaining, split into list
 - format() - formats values in string
-- index() - searches the string for a value, returns where the value is found
+- index() - searches the string for a value, returns where the value is found / items.index(200.14) / index(list) <2: (can use start/stop)
 - swapcase() - lower becomes upper, vice versa
 - title() - first char of each word is uppercase `print(book.title())`
-- strip() - strips away certain characs `print(mood.strip('!'))`
+- strip() - strips away certain characs, or leading and trailing spaces `print(mood.strip('!'))`
 - replace() - replace with 2nd argument `print(opinion.replace('hard', 'fun'))`
-- len() - # of characs in a string `print(len(state))`
+- len() - # of characs in a string `print(len(state))`, len(list_name) = # of elements in list
+- .find(string) - case sensitive, .split(), .join()
+
 
 ## List methods
 `myList = ["red", "orange", "yellow", "green", "blue"]` or `myList = list(("red", "orange", "yellow", "green", "blue"))`
@@ -106,27 +144,33 @@ bitwise - & = AND, | = OR, ~ = NOT
 - .append() - myList.append("indigo") - adds this to the end of list
 - .insert() - myList.insert(2, "indigo") - adds this after orange
 - .extend() - myList.extend(secondList) - joins myList and secondList 
-- .remove() - myList.remove("yellow")
+- .remove() - myList.remove("yellow") /  use for larger lists - new_items.remove('coat') / if 'C001' in customer_list: customer_list.remove('C005')
 - .pop() - removes last item, .pop(2) - removes 3rd item
-- del myList[2] - removes 3rd item
+- del myList[2] - removes 3rd item / del new_items[1:3]
 - .clear() - empties list, no content listed, prints []
-- .sort() - sorts alphabetically or numerically, myList.sort(reverse = True) - descending
-- make a copy - .copy() or list(myList)
+- .sort() - in place, sorts alphabetically or numerically permanently, myList.sort(reverse = True) - descending
+- .sorted() - not in place, sorts list, original unchanged
+- .copy() - make a copy, copies over main list to new list, original list the same
+- .deepcopy() - need to import library, creates independent copy of nested list
+- .reverse() - in place/permanent, use negative slice for reverse not tin place 
 
 ## Slice Operators
 can use on lists, sets, tuples
 
-sliced = [start:stop] or sliced = [start:stop:step]
+- sliced = [start:stop] or sliced = [start:stop:step] 
+- start - default = 0 : stop - includes all previous at start (not inclusive) : step size - increment default = 1 (returns every element)
 
 - [-1] - prints second to last item
 - [1:4] - start at 1 and stop at 4
 - [:4] - stop at index 4 but don't include
 - [2:] - start at 2 and stop at end
-- [::2] - start at beg, stop at end, step by 2
+- [::2] - start at beg, stop at end, every second one
 - [::-1] - reverse a list
+- [-2:] - last two characs or elements 
 
 
 ## Tuples
+- less memory than lists, executes quicker, reduces user erros
 `myTuple = ("red", "orange", "yellow", "green", "blue")` or `myTuple = tuple(("red", "orange", "yellow", "green", "blue"))`
 - stores multiple items in a single variable, collection which is ordered and unchangeable or immutable, and allow duplicate values
 - convert the tuple into a list to be able to change or add values - `y = list(myTuple)` then `y.append("gray")`, `myTuple = tuple(y)`
@@ -134,8 +178,10 @@ sliced = [start:stop] or sliced = [start:stop:step]
 - print(len(myTuple)) - # of items in tuple
 - create a tuple with only one item - myTuple = ("red",)
 - print(myTuple[1]) - prints 2nd item - orange
-- packing - assign values to a tuple. unpacking = extract values
-```
+- packing - assign values to a tuple. 
+- tuple() - unpacking = extract values 
+
+```python
 fruits = ("apple", "banana", "cherry")
 
 (green, yellow, red) = fruits
@@ -146,12 +192,22 @@ print(red)
 ```
 
 ## Set
+- collection of unique values, unordered - no indexing or keys, mutable values, set values = unique and immutable, no repeats/duplicates are removed
+- use cases - more efficient than lists whe performing membership tests ('item' in list), gather unique values w/o looping `list(set(shipments_today))`, find date shared or not shared btwn items w/o looping `set(shipment_today).difference(set(shipment_yesterday))`
+
 `mySet = {"red", "orange", "yellow", "green", "blue"}` or`mySet = set(("red", "orange", "yellow", "green", "blue"))`
--  store multiple items in a single variable, collection which is unordered (no index, changes order every time) and unchangeable, no duplicate values (dupes are removed)
-- built-in methods - add(), discard(), copy, clear, difference, union, update, remove, pop
+- built-in methods - add(), discard(), copy, clear, difference, update, remove, pop
+
+- union() - unique values in both sets `weekend_set = set(sat_cust).union(sun_cust)`
+- intersection() - all values in both sets - `weekend_set.intersection(set(fri_cust))`
+- difference() - returns values in set1 not set2 / set1 - set2, order matters
+- symmetric_difference() - values not shared, opposite of intersection / set1.symmetric_difference(set2)
+
+
 
 ## Dictionary
-- collection which is ordered (version 3.7+) and changeable, no duplicate values (overwrites 1st dupe), used to store data values in key:value pairs
+- collection which is ordered (version 3.7+) and changeable, no duplicate values (overwrites 1st dupe), used to store data values in key:value pairs / keys = unique and immutable, values = not unique, use any data type
+
 ```python
 myFamily = {
   "child1": {
@@ -166,7 +222,40 @@ myFamily = {
   }
 }
 ```
-- methods to use - copy(), fromkeys(), get(), keys(), update(), values()
+- methods to use - copy(), fromkeys(), get() - value for given key `get(k, value if key not found)`, update('k':v) - appends, items() - pairs tuples, keys() - returns keys, values() - returns values
+
+- call - item['skis'] 
+- add or reassign - item['skis'] = 14.99
+- delete - del item['coffee'] 
+- item_details.values()
+- item_details.get("item", "we don't carry that item") - used to avoid errors in case item not found
+- item_details.update({'item': [29.99, 0, 'sold out']})
+
+**zip** builds dicts, 2 iterables only
+```python
+list_one = [[..], [..]] # v
+list_two = ['..', '..'] # k
+
+item_dict = dict(zip(list_two, list_one))
+
+# output {'..': [..], '..': [..]}
+
+
+# mulitple iterables
+dict(zip(item_ids, zip(names, prices, category, sizes)))
+
+# 1st zip for key, 2nd zip for values
+```
+
+Nested dictionaries
+outerdict(keys:{innerdict(values): [..], [..]})
+item_list = {
+  2019:{'skis':[249.99,10,'instock'], 'snowboards': [99.99,0,'sold out']}, 
+  2020:{'skis':[259.99,10,'instock'], 'snowboards': [109.99,0,'sold out']},
+  2021:{'skis':[269.99,10,'instock'], 'snowboards': [129.99,0,'sold out']}
+}
+- call - item_list[2020]['price']
+
 
 ## Comprehension
 List comprehension - when you want to create a new list based on the values of an existing list. For dict, lists, sets. For tuples `x = tuple(condition)`
@@ -181,6 +270,20 @@ newlist = [x for x in fruits if "a" in x]
 
 print(newlist) # prints ['apple', 'banana', 'mango']
 ```
+
+nested lists
+```python
+list = [
+  ['a', 'b', 'c'], 
+  ['d', 'e', 'f'],
+  ['g', 'h', 'i']
+  ]
+
+```
+- list[1] = ['d', 'e', 'f']
+- list[1][1] = 'e'
+- list[1].append('k') = defk
+
 
 ## If statements
 examples from [W3schools](https://www.w3schools.com/python/python_conditions.asp)
@@ -249,6 +352,14 @@ if a > b or a > c:
   print("At least one of the conditions is True")
 ```
 
+Nested
+if condition:
+  if :
+  else :
+elif :
+else :
+
+
 ## While loops
 - can execute a set of statements as long as a condition is true (`while condition == True:`)
 
@@ -290,6 +401,9 @@ while i < 6:
 ## For loops
 used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string). can execute a set of statements, once for each item in a list, tuple, set.
 
+for item in iterable:
+  do this
+
 Print each fruit in a fruit list:
 ```python 
 fruits = ["apple", "banana", "cherry"]
@@ -302,13 +416,18 @@ Prints each letter in a list
 for x in "banana":
   print(x)
 ```
-range function - 3 args start, stop, step / 2 args start, stop
-```
+
+- range function - sequence of ints, generated by start, stop, step or 2 args - start, stop, works well with loops
+
+```python
 for i in range(10, -1, -1): 
   print(i)
 ```
+range(0,100,10)[5] = 50
+list(range(0,100,10)) = 0,10,20,30,40,50
 
-break statement we can stop the loop before it has looped through all the items
+### loop controls
+**break** statement stops the loop before completion, avoid infinite loops
 
 Exit the loop when x is "banana":
 ```
@@ -319,7 +438,7 @@ for x in fruits:
     break
 ```
 
-The continue statement we can stop the current iteration of the loop, and continue with the next
+The **continue** statement skips to next iteration in loop, repeats prev code
 
 Do not print banana:
 ```python
@@ -329,6 +448,52 @@ for x in fruits:
     continue
   print(x)
 ```
+**pass** serves as a placeholder for future code, avoiding run errors with incomplete logic
+```python
+if 'ski' in item
+  pass # comment for later
+
+```
+
+**try, except** help with error and exception handling, for resolving errors in a loop without stopping execution midway
+
+```python
+for rating in ratings:
+  try:
+    print(int(rating[0]))
+  except ValueError: # TypeError, ValueError, ZeroDivisionError
+    print('incorrect data') 
+```
+
+The **try** block lets you test a block of code for errors. The try block will generate an exception, because x is not defined:
+```python
+try:
+  print(x)
+except:
+  print("An exception occurred")
+```
+
+The **except** block lets you handle the error.
+In this example, the try block does not generate any error:
+```python
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong")
+```  
+
+The **finally** block lets you execute code, regardless of the result of the try- and except blocks.
+```python
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished")
+```
+
 
 Print all numbers from 0 to 5, and print a message when the loop has ended:
 ```python 
@@ -343,19 +508,84 @@ for loops cannot be empty, but if you for some reason have a for loop with no co
 for x in [0, 1, 2]:
   pass
 ```
+**enumerate** function - returns index and item for each item in an iterable as it loops thru
+```python
+for index, element in enumerate(list_name):
+  print(index, element)
+# output (index, element) - 0 5.27 1 8.79 2 17.59 3 21.99 
+
+``` 
+
+multiple lists
+```python
+for index, element in enumerate(list_name):
+  print(list[index].element)
+# output snowboard 5.27 boots 8.79 helmet 17.59  
+
+```
+
+```python
+# for -singular- in -plural-
+taxes = []
+total = []
+
+for subtotal in subtotals:
+  tax = round(subtotal * .08, 2)
+  total = round(subtotal + tax, 2)
+  taxes.append(tax)
+  totals.append(total)
+
+print(taxes)
+print(totals)
+```
+```python
+for i, subtotal in enumerate(subtotals):
+  if location[i] == 'Sun Valley':
+    tax = round(subtotal * .08, 2)
+  elif location[i] == 'Stowe':
+    tax = round(subtotal * .06, 2)
+  else:
+    tax = round(subtotal * .0775, 2)
+
+  total = round(subtotal + tax, 2)  
+  taxes.append(tax)
+  totals.append(total)
+
+print(taxes)
+print(totals)
+```
+
+Nested loops
+```python
+for item in item_list:
+  for size in size_list:
+    print(f"{item} is available in {size}")
+
+```
 
 ## Functions
-- function is a block of code which only runs when it is called. You can pass data, known as parameters, into a function. A function can return data as a result.
+- reusable blocks of code that perform tasks when it is called. You can pass data, known as parameters, into a function. A function can return data as a result. ex. min(), max(), len()
+- use cases - when repeating code or copying and pasting code - DRY, when you'll use in the future, when you need to share with others, make complex program made readable
+- tip - package pieces of data cleaning or analysis workflow into funcs to save time
+
+- input = args
+- function - what the input does, call a func, stored elsewhere
+- output = values to return
+- side effects - changes or actions made by func
+
+def func(args):
+  do this
+  return output
 
 - function is defined using the **def** keyword:
 ```python 
-def func():
+def function_name(args):
   print("Run")
   
 func() # call a function
 ```
 - **parameters** - is the variable listed inside the parentheses in the function definition
-- **arguments** (args) - info can be passed into functions, value that is sent to the function when it is called. (below: fname and lname are args)
+- **arguments** (args) - var names separated by commas, info can be passed into functions, value that is sent to the function when it is called. (below: fname and lname are args)
 
 if your function expects 2 arguments, you have to call the function with 2 arguments
 
@@ -366,7 +596,7 @@ def my_function(fname, lname):
 my_function("Marj", "Gee")
 ```
 
-Arbitrary Arguments, *args
+Arbitrary Arguments, _*args_ tuples, pass 1+ args
 If the number of arguments is unknown, add a * before the parameter name:
 ```python
 def my_function(*kids):
@@ -387,7 +617,7 @@ for pair in pairs:
 ```
 for dict - `func(**{'x': 2, 'y': 5})`
 
-**kwargs - keyword args 
+_**kwargs_ - keyword args = dicts, any # or args, use to unpack dicts and pass it as kwargs (machine learning)
 
 **Return** Values - to let a function return a value, use the return statement:
 
@@ -405,8 +635,53 @@ print(my_function(9))
 ```def myfunction():
   pass
 ```
+### docstrings
 
-## Lambda Functions 
+```python
+def concatenator(string1, string2):
+  """ what this func  does
+  args
+    string1(str): ..
+    string2(str): ..
+  returns
+
+  """
+return string1 + " " + string2
+
+# use ? to retrieve docstring 'concatenator?'
+```
+- arg types - docstrings = *positional* args - passed in order defined, *keyword* any order
+
+
+## Math Functions 
+- min() and max() functions can be used to find the lowest or highest value in an iterable
+- round() - 'round(#, # of digits)' / `round(transactions * .08, 2)`
+- abs() - absolute(-3) = 3
+- sum() - sum(1,2,3), sum(transactions)
+- find average - sum(list_name) / len()
+
+```python 
+x = min(5, 10, 25)
+y = max(5, 10, 25)
+
+print(x) # prints 5
+print(y) # prints 25
+```
+built-in module called math, which extends the list of mathematical functions. To use - `import math` can use the `math.sqrt()` method 
+- math.pi (prints 3.141592653589793), math.ceil(), math.floor()
+
+```python
+import math
+
+x = math.ceil(1.4)
+y = math.floor(1.4)
+
+print(x) # returns 2
+print(y) # returns 1
+```
+
+
+### Lambda Functions 
 A lambda function is a small anonymous function. A lambda function can take any number of arguments, but can only have one expression. Use lambda functions when an anonymous function is required for a short period of time. 
 
 Syntax `lambda arguments : expression`
@@ -504,28 +779,6 @@ mymodule.greeting("Marj")
 - dir(module) - built-in function to list all the function names (or variable names) in a module
 - `from mymodule import person1, print (person1["age"])` - can choose to import only parts from a module, by using the from keyword (imports only the person1 dictionary from the module)
 
-## Math Functions 
-min() and max() functions can be used to find the lowest or highest value in an iterable
-
-```python 
-x = min(5, 10, 25)
-y = max(5, 10, 25)
-
-print(x) # prints 5
-print(y) # prints 25
-```
-built-in module called math, which extends the list of mathematical functions. To use - `import math` can use the `math.sqrt()` method 
-- math.pi (prints 3.141592653589793), math.ceil(), math.floor()
-
-```python
-import math
-
-x = math.ceil(1.4)
-y = math.floor(1.4)
-
-print(x) # returns 2
-print(y) # returns 1
-```
 
 ## JSON in Python 
 
@@ -587,60 +840,4 @@ What's a package? A package contains all the files you need for a module. Module
 - Remove pkgs - pip uninstall camelcase
 - List pkgs - pip list
 
-## Try, Except, Finally
-The **try** block lets you test a block of code for errors. The try block will generate an exception, because x is not defined:
-```python
-try:
-  print(x)
-except:
-  print("An exception occurred")
-```
-
-The **except** block lets you handle the error.
-In this example, the try block does not generate any error:
-```python
-try:
-  print("Hello")
-except:
-  print("Something went wrong")
-else:
-  print("Nothing went wrong")
-```  
-
-The **finally** block lets you execute code, regardless of the result of the try- and except blocks.
-```python
-try:
-  print(x)
-except:
-  print("Something went wrong")
-finally:
-  print("The 'try except' is finished")
-```
-
-## User Input
-
-Python 3.6 uses the input() method. Can ask user for input. 
-```python 
-username = input("Enter username:")
-print("Username is: " + username) 
-```
-
-```python
-name = input("What's your name?: ")
-age = input("How old are you?: ")
-
-print("Hello " + name + "! You are " + age + " years old.")
-```
-
-# F Strings 
-
-```
-name = "Marj G"
-print(f"Your name is {name}.") # 'Your name is Marj G'
-```
-
-```python
-user = {name: "Marj G", email: "youremail@gmail.com"}
-print(f{"Hello, {user['name']}. Your email address is: {user['email']}.")
-```
 
